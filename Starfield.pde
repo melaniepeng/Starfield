@@ -14,7 +14,7 @@ void setup()
 	{
 		b[j] = new OddballParticle();
 	}
-
+	c = new JumboParticle();
 }
 void draw()
 {
@@ -30,7 +30,7 @@ void draw()
 		b[j].move();
 		b[j].show();
 	}	
-	c = new OddballParticle();
+	
 	c.move();
 	c.show();
 }
@@ -100,22 +100,23 @@ class JumboParticle extends OddballParticle //uses inheritance
 {
 	JumboParticle()
 	{
-		angle = Math.random()*10;
-		speed = Math.random()*5;
 	}
 	void show()
 	{
-		fill(205,201,201,200);
-		ellipse((float)x, (float)y, 30, 30);
+		fill(0,255,255);
+		ellipse((float)x, (float)y, 45,45);
 	}
 	void move()
 	{
-		x = x + speed;
-		y = y + angle;
-		if (x  > 600 || x  < 0 || y  < 0 || y  > 600)
+		x = x + Math.sin(angle)*speed;
+		y = y + Math.cos(angle)*speed;
+		
+		if (x > 600 || x < 0 || y < 0 || y > 600)
 		{
 			x = 300;
 			y = 300;
+			angle = Math.random()*(2*Math.PI);
+			speed = (Math.random()*5)+5;
 		}
 	}
 }
